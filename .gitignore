@@ -28,3 +28,9 @@ coverage/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Archivos de configuración de compilación
+bin/
+obj/
+.vs/
+*.user
