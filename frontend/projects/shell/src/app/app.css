@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 12px 24px;
+  background: #1e293b;
+  color: white;
+}
+
+nav a {
+  color: #cbd5e1;
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+nav a.activo {
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  padding: 24px;
+}
