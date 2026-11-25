@@ -1,0 +1,30 @@
+# Dependencias
+node_modules/
+
+# Compilación
+dist/
+build/
+out-tsc/
+*.tsbuildinfo
+
+# Caché y cobertura
+.angular/
+.cache/
+coverage/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Editores y sistema operativo
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+.DS_Store
+Thumbs.db
