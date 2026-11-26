@@ -1,5 +1,5 @@
 {
   "catalogo": "http://localhost:4201/remoteEntry.json",
-  "pedidos": "http://localhost:4200/remoteEntry.json",
-  "resumen": "http://localhost:4200/remoteEntry.json"
+  "pedidos": "http://localhost:4202/remoteEntry.json",
+  "resumen": "http://localhost:4203/remoteEntry.json"
 }

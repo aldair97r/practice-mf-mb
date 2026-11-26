@@ -202,6 +202,38 @@
       "prefix": "app",
       "architect": {
         "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "cacheExternalArtifacts": true,
+            "tsConfig": "projects/pedidos/tsconfig.federation.json"
+          },
+          "configurations": {
+            "production": {
+              "target": "pedidos:esbuild:production"
+            },
+            "development": {
+              "target": "pedidos:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "pedidos:serve-original:development",
+            "tsConfig": "projects/pedidos/tsconfig.federation.json",
+            "rebuildDelay": 500,
+            "cacheExternalArtifacts": true,
+            "dev": true,
+            "devServer": true,
+            "port": 0
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
+        "esbuild": {
           "builder": "@angular/build:application",
           "options": {
             "browser": "projects/pedidos/src/main.ts",
@@ -212,7 +244,8 @@
                 "input": "projects/pedidos/public"
               }
             ],
-            "styles": ["projects/pedidos/src/styles.css"]
+            "styles": ["projects/pedidos/src/styles.css"],
+            "polyfills": ["es-module-shims"]
           },
           "configurations": {
             "production": {
@@ -238,20 +271,20 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+        "serve-original": {
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pedidos:build:production"
+              "buildTarget": "pedidos:esbuild:production"
             },
             "development": {
-              "buildTarget": "pedidos:build:development"
+              "buildTarget": "pedidos:esbuild:development"
             }
           },
-          "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4202
+          }
         }
       }
     },
@@ -263,6 +296,38 @@
       "prefix": "app",
       "architect": {
         "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "cacheExternalArtifacts": true,
+            "tsConfig": "projects/resumen/tsconfig.federation.json"
+          },
+          "configurations": {
+            "production": {
+              "target": "resumen:esbuild:production"
+            },
+            "development": {
+              "target": "resumen:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "resumen:serve-original:development",
+            "tsConfig": "projects/resumen/tsconfig.federation.json",
+            "rebuildDelay": 500,
+            "cacheExternalArtifacts": true,
+            "dev": true,
+            "devServer": true,
+            "port": 0
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
+        "esbuild": {
           "builder": "@angular/build:application",
           "options": {
             "browser": "projects/resumen/src/main.ts",
@@ -273,7 +338,8 @@
                 "input": "projects/resumen/public"
               }
             ],
-            "styles": ["projects/resumen/src/styles.css"]
+            "styles": ["projects/resumen/src/styles.css"],
+            "polyfills": ["es-module-shims"]
           },
           "configurations": {
             "production": {
@@ -299,20 +365,20 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+        "serve-original": {
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "resumen:build:production"
+              "buildTarget": "resumen:esbuild:production"
             },
             "development": {
-              "buildTarget": "resumen:build:development"
+              "buildTarget": "resumen:esbuild:development"
             }
           },
-          "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4203
+          }
         }
       }
     }

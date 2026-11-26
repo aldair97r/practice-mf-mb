@@ -1,0 +1,59 @@
+<h2>Pedidos</h2>
+
+<form (submit)="$event.preventDefault(); crear()">
+  <select #producto (change)="productoId.set(+producto.value)">
+    <option value="" disabled selected>Elige un producto</option>
+    @for (p of productos.value(); track p.id) {
+      <option [value]="p.id">{{ p.nombre }} ({{ p.precio | currency: 'USD' }})</option>
+    }
+  </select>
+
+  <input
+    #unidades
+    type="number"
+    min="1"
+    [value]="cantidad()"
+    (input)="cantidad.set(+unidades.value)"
+  />
+
+  <button type="submit" [disabled]="productoId() === null || enviando()">
+    {{ enviando() ? 'Creando...' : 'Crear pedido' }}
+  </button>
+</form>
+
+@if (productos.error()) {
+  <p class="error">No se pudieron cargar los productos.</p>
+}
+@if (mensajeError()) {
+  <p class="error">{{ mensajeError() }}</p>
+}
+
+@if (pedidos.error()) {
+  <p class="error">No se pudo conectar con el servicio de pedidos.</p>
+  <button (click)="pedidos.reload()">Reintentar</button>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (fila of filas(); track fila.id) {
+        <tr>
+          <td>{{ fila.id }}</td>
+          <td>{{ fila.nombre }}</td>
+          <td>{{ fila.cantidad }}</td>
+          <td>{{ fila.total | currency: 'USD' }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4">Todavía no hay pedidos.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
